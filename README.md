@@ -10,7 +10,7 @@ Download digits of pi, e.g. from [archive.org](https://archive.org/details/Math_
 Set path to digits file in
 [application.properties](src/main/resources/application.properties)
 ```
-piday.pathtodigits[insert_your_path]
+piday.pathtodigits=[insert_your_path]
 ```
 
 Start development environment

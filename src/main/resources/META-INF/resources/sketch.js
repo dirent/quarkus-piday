@@ -1,7 +1,12 @@
-function setup() {
-    createCanvas(400,400);
+let searchBox;
+
+function searchItUp() {
+    console.log( "Search it up:" + searchBox.value() );
 }
 
-function draw() {
-    background(0);
+function setup() {
+    noCanvas();
+
+    searchBox = createInput('');
+    searchBox.input(searchItUp);
 }

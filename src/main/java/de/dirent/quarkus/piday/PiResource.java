@@ -1,5 +1,9 @@
 package de.dirent.quarkus.piday;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -16,6 +20,13 @@ public class PiResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String pi() {
-        return "Reading digits from " + pathToDigits;
+        byte[] head = new byte[0];
+        File piDigits = new File( pathToDigits );
+        try ( InputStream in = new FileInputStream( piDigits ) ) {
+            head = in.readNBytes(100);
+            return new String( head, "utf-8" );
+        } catch( Exception e) {
+            return "Could not read from digits file: " + e.getMessage();
+        }
     }
 }

@@ -18,4 +18,4 @@ Start development environment
 ./mvnw compile quarkus:dev
 ```
 
-Open in [browser](http://localhost:8080/pi)
+Open in [browser](http://localhost:8080/)

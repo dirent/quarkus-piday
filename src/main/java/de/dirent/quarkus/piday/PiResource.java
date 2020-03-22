@@ -20,11 +20,14 @@ public class PiResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String pi() {
-        byte[] head = new byte[0];
+        byte[] buf = new byte[32000];
         File piDigits = new File( pathToDigits );
         try ( InputStream in = new FileInputStream( piDigits ) ) {
-            head = in.readNBytes(100);
-            return new String( head, "utf-8" );
+            StringBuffer response = new StringBuffer(1000000);
+            while( in.read(buf) > 0 ) {
+                response.append( new String(buf, "utf-8" ) );
+            }
+            return response.toString();
         } catch( Exception e) {
             return "Could not read from digits file: " + e.getMessage();
         }

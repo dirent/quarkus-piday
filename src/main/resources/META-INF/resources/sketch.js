@@ -1,10 +1,10 @@
 let searchBox, indexP, digits;
 
 async function searchItUp() {
-    let search = searchBox.value();
-    if( search ) {
+    let digits = searchBox.value();
+    if( digits ) {
         let index;
-        let response = await fetch("pi?search="+search);
+        let response = await fetch("pi/search/"+digits);
         if (response.ok) {
             index = await response.text();
         } else {

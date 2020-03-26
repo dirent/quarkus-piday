@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
 import io.quarkus.runtime.ShutdownEvent;
@@ -80,5 +81,12 @@ public class PiResource {
             return pi.substring(0,Math.min(pi.length()-1, 1000002));
         }
         return ""+indexOf(search,2);
+    }
+
+    @GET
+    @Path( "/search/{digits}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String search( @PathParam String digits ) {
+        return ""+indexOf(digits,2);
     }
 }

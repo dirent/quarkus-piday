@@ -13,10 +13,10 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.tapestry5.json.JSONObject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
-import org.json.simple.JSONObject;
 
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
@@ -91,6 +91,6 @@ public class PiResource {
         JSONObject result = new JSONObject();
         result.put( "index", indexOf(digits,2) );
         result.put( "search", digits );
-        return result.toJSONString();
+        return result.toCompactString();
     }
 }

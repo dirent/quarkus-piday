@@ -16,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.jboss.resteasy.annotations.jaxrs.QueryParam;
+import org.json.simple.JSONObject;
 
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
@@ -85,8 +86,11 @@ public class PiResource {
 
     @GET
     @Path( "/search/{digits}")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String search( @PathParam String digits ) {
-        return ""+indexOf(digits,2);
+        JSONObject result = new JSONObject();
+        result.put( "index", indexOf(digits,2) );
+        result.put( "search", digits );
+        return result.toJSONString();
     }
 }

@@ -51,7 +51,7 @@ public class PiResource {
     void onStop(@Observes ShutdownEvent ev) {               
         logger.debug("The application is stopping...");
     }
-
+ 
     public int indexOf( String search, int start ) {
         if( search == null ) {
             return -1;
@@ -82,6 +82,13 @@ public class PiResource {
             return pi.substring(0,Math.min(pi.length()-1, 1000002));
         }
         return ""+indexOf(search,2);
+    }
+
+    @GET
+    @Path( "/search")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String search() {
+        return search(null);
     }
 
     @GET

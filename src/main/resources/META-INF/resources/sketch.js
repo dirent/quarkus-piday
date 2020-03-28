@@ -4,7 +4,7 @@ function searchItUp() {
     let digits = searchBox.value();
     if( digits ) {
         indexP.html('Searching');
-        loadJSON( "pi/search/"+digits, gotResult );
+        loadJSON( "pi/search/"+digits.trim(), gotResult );
     } else {
         indexP.html('Waiting for input');
     }
@@ -12,7 +12,7 @@ function searchItUp() {
 
 function gotResult(data) {
     let index = data.index;
-    if( index <= 0 ) {
+    if( index < 0 ) {
         index = 'Not found';
     }
     indexP.html(index);

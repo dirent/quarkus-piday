@@ -81,7 +81,7 @@ public class PiResource {
         if( search == null ) {
             return pi.substring(0,Math.min(pi.length()-1, 1000002));
         }
-        return ""+indexOf(search,2);
+        return ""+indexOf(search.trim(),2);
     }
 
     @GET
